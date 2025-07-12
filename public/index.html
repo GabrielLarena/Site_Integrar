@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrar Jr.</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const burger = document.getElementById("burger");
+      const nav = document.getElementById("nav");
+
+      burger.addEventListener("click", () => {
+        nav.classList.toggle("mobile-show");
+        nav.classList.toggle("mobile-hidden");
+      });
+    });
+  </script>
+</head>
+<body>
+  <header class="header">
+    <img src="img/logo.png" alt="Logo Integrar Jr." class="logo">
+    <button id="burger" class="burger">☰</button>
+    <nav id="nav" class="nav mobile-hidden">
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#parceiros">Parceiros</a></li>
+        <li><a href="carreira.html">Carreiras</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>  
+
+
+  <main class="main-container">
+    <!-- Seção Hero -->
+    <section class="section" id="hero">
+      <div class="text-content">
+        <h1>Impulsionamos o crescimento da sua empresa</h1>
+        <p>Consultoria estratégica e personalizada com foco em resultados concretos.</p>
+        <a href="#servicos" class="cta">Conheça nossos serviços</a>
+      </div>
+      <div class="image-content">
+        <img src="img/hero-05.jpeg" alt="Imagem institucional da empresa" /> <!-- imagem institucional, equipe ou cliente em atendimento -->
+      </div>
+    </section>
+
+    <!-- Seção Serviços -->
+    <!-- Projetos/Serviços Section -->
+<section class="section services-section" id="servicos">
+  <div class="section-header">
+    <h4 class="subheading">NOSSOS SERVIÇOS</h4>
+    <h2 class="heading">Eles representam todas as fases para garantir que sua ideia ou necessidade entre no mercado como uma solução de impacto</h2>
+  </div>
+
+  <div class="services-grid">
+    <!-- Grid 1 -->
+    <div class="service-box">
+      <img src="img/efficiency.png" alt="Ícone de MP" class="service-icon">
+      <h4>Mapeamento de Processos</h4>
+      <p>Mapeamos a ordem das atividades e rotinas da sua empresa para otimizar seu dia a dia!.</p>
+      <a href="#contato" class="cta">Quero saber mais!</a>
+    </div>
+
+    <!-- Plano financeiro -->
+    <div class="service-box">
+      <img src="img/recovery.png" alt="Ícone de Plano financeiro" class="service-icon">
+      <h4>Plano Financeiro</h4>
+      <p>Criamos ferramentas para garantir a saude do caixa e comprir metas propostas</p>
+      <a href="#contato" class="cta">Quero saber mais!</a>
+    </div>
+
+    <!-- Estratégia de Mercado -->
+    <div class="service-box">
+      <img src="img/analysis.png" alt="Ícone de Estratégia de Mercado" class="service-icon">
+      <h4>Estratégia de Mercado</h4>
+      <p>Com planos de ações criativos, fortalecemos sua marca e destaque em relação aos concorrentes.</p>
+      <a href="#contato" class="cta">Quero saber mais!</a>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Seção Parceiros -->
+    <section class="section" id="parceiros">
+      <div class="image-content">
+        <img src="img/hero-02.jpg" alt="Logos ou fotos de parceiros satisfeitos" /> <!-- logos ou parcerias em evento -->
+      </div>
+      <div class="text-content">
+        <h1>Empresas que confiam na Integrar Jr.</h1>
+        <p>Mais de 50 empresas atendidas com índices de satisfação superiores a 95%.</p>
+        <a href="cases.html" class="cta right">Veja nossos cases</a>
+      </div>
+    </section>
+
+    <!-- Seção Resultados -->
+    <section class="section">
+      <div class="text-content">
+        <h1>Resultados que falam por si</h1>
+        <p>Empresas que passaram pela nossa consultoria relataram aumento de produtividade, melhoria de processos e crescimento financeiro em média de 27%.</p>
+      </div>
+      <div class="image-content">
+        <img src="img/hero-03.jpg" alt="Gráficos e relatórios de resultado" /> <!-- gráfico de crescimento ou depoimento visual -->
+      </div>
+    </section>
+
+    <!-- Seção Carreiras -->
+    <section class="section">
+      <div class="image-content">
+        <img src="img/hero-05.jpeg" alt="Equipe Integrar Jr." /> <!-- equipe jovem e profissional -->
+      </div>
+      <div class="text-content">
+        <h1>Faça parte da nossa equipe</h1>
+        <p>Buscamos talentos engajados e com vontade de impactar empresas de verdade.</p>
+        <a href="carreira.html" class="cta">Ver oportunidades</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-left">
+        <img src="img/logo.png" alt="Simbolo Integrar Jr." class="footer-logo" />
+        <div class="footer-socials">
+          <a href="https://facebook.com/integrarjr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f social-icon"></i></a>
+          <a href="https://instagram.com/integrarjr" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram social-icon"></i></a>
+          <a href="https://linkedin.com/company/integrarjr" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin social-icon"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="sobre.html">Sobre nós</a>
+        <a href="carreira.html">Carreiras</a>
+        <a href="contato.html">Contato</a>
+      </div>
+    </div>
+    <p class="footer-bottom">© Integrar Jr. 2025. Todos os direitos lorem ipsum.</p>
+  </footer>
+</body>
+</html>

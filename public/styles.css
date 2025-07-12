@@ -1,0 +1,416 @@
+:root {
+  --primary: #7F40FF;
+  --primary-dark: #35008A;
+  --secondary: #FF6500;
+  --secondary-dark: #E02300;
+  --tertiary: #1469E0;
+  --primary-container: #A5D6A7;
+  --tertiary-container: #B3E5FC;
+  --error: #D32F2F;
+  --light: #D9D9D9;
+  --gray: #cdcdcd;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--light);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header e navegação */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem 2rem;
+  background-color: var(--primary);
+  color: white;
+  position: relative;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.nav {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--secondary);
+}
+
+.burger {
+  display: block;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.nav.mobile-hidden {
+  display: none;
+}
+
+.nav.mobile-show {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary-dark);
+  padding: 1rem 2rem;
+}
+
+.nav.mobile-show .nav-links {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Seções principais */
+.main-container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 2.5px solid #fff;
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.text-content,
+.image-content {
+  flex: 1 1 300px;
+  max-width: 500px;
+  padding: 1rem;
+}
+
+.text-content h1,
+.text-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary-dark);
+}
+
+.text-content p,
+.text-content li {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+ul {
+  padding-left: 1.25rem;
+}
+
+.image-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Botões e CTA */
+.cta,
+button.cta {
+  display: inline-block;
+  background: var(--secondary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  border: none;
+  transition: background 0.3s;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.cta:hover {
+  background: var(--secondary-dark);
+}
+
+/* Formulários */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* Serviços/Projetos */
+.services-section {
+  background: #D9D9D9;
+  padding: 3rem 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.subheading {
+  color: var(--secondary);
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.heading {
+  font-size: 1.8rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.service-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  text-align: center;
+}
+
+.service-icon {
+  width: 100px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.service-box h4 {
+  font-size: 1.3rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.service-box p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.match {
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.match-img {
+  width: 80%;
+  height: auto;
+  margin: 0.5rem auto;
+}
+
+/* contrato */
+
+.contato-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contato-section h1 {
+  text-align: center;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.contato-section p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.contato-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contato-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+.contato-form input,
+.contato-form select,
+.contato-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.contato-form button {
+  align-self: flex-start;
+}
+
+
+
+/* Footer */
+.footer {
+  background: var(--primary);
+  color: white;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo {
+  width: 120px;
+  height: auto;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  color: var(--primary);
+  background: white;
+  padding: 0.5rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: background 0.2s;
+}
+
+.social-icon:hover {
+  background: var(--secondary);
+  color: white;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: flex !important;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .nav.mobile-hidden,
+  .nav.mobile-show {
+    position: static;
+    flex-direction: row;
+    background: none;
+    padding: 0;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .footer-top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .footer-left,
+  .footer-links {
+    align-items: flex-start;
+  }
+
+  .footer {
+    text-align: left;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    width: 100%;
+  }
+}
