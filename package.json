@@ -1,7 +1,7 @@
 {
-  "name": "Site Integrar Jr.",
+  "name": "site-integrar-jr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Prototipo do site institucional da Integrar Jr.",
   "homepage": "https://github.com/GabrielLarena/Site_Integrar#readme",
   "bugs": {
     "url": "https://github.com/GabrielLarena/Site_Integrar/issues"
@@ -13,13 +13,17 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node --experimental-sqlite ./src/index.cjs"
+    "start": "http-server ./public"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "express-oauth2-jwt-bearer": "^1.6.1"
+    "express-oauth2-jwt-bearer": "^1.6.1",
+    "http-server": "^14.1.1"
   }
 }

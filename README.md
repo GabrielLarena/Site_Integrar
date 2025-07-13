@@ -14,3 +14,5 @@ $ cd Site_Integrar
 $ npm install
 $ npm start
 ```
+
+Abra o site com http://localhost:8080
