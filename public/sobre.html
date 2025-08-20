@@ -1,24 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sobre Nós - Dietamigo</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrar Jr.</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script defer>
+  // Script do Menu  
+  document.addEventListener("DOMContentLoaded", () => {
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
+
+    // Abir/fechar com o clique no burger
+    burger.addEventListener("click", (e) => {
+      e.stopPropagation(); // evita que o clique no botão seja considerado "fora"
+      nav.classList.toggle("mobile-show");
+      nav.classList.toggle("mobile-hidden");
+    });
+
+    // Fechar ao clicar fora do menu
+    document.addEventListener("click", (e) => {
+      const isClickInside = nav.contains(e.target) || burger.contains(e.target);
+      if (!isClickInside && nav.classList.contains("mobile-show")) {
+        nav.classList.remove("mobile-show");
+        nav.classList.add("mobile-hidden");
+      }
+    });
+
+    // Fechar automaticamente se a tela mudar para desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) { // ajuste o breakpoint conforme seu layout
+        nav.classList.remove("mobile-show");
+        nav.classList.add("mobile-hidden");
+      }
+    });
+  });
+</script>
 </head>
 <body>
   <header class="header">
-    <div class="logo">Dietamigo</div>
-    <a href="index.html" class="cta">Voltar</a>
-  </header>
+    <img src="img/logo.png" alt="Logo Integrar Jr." class="logo">
+    <button id="burger" class="burger">☰</button>
+    <nav id="nav" class="nav mobile-hidden">
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html#servicos">Serviços</a></li>
+        <li><a href="index.html#parceiros">Parceiros</a></li>
+        <li><a href="carreira.html">Carreiras</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>  
 
   <main class="main-container">
     <section class="section">
       <div class="text-content">
         <h1>Sobre Nós</h1>
-        <p>Somos apaixonados por nutrição, tecnologia e bem-estar. Nossa missão é ajudar pessoas a terem uma vida mais saudável com informações acessíveis.</p>
+        <ul>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce egestas ex quis massa aliquet, a imperdiet purus ornare. Suspendisse sollicitudin ante non massa rhoncus, quis commodo dui mattis. Fusce ut quam id nulla pellentesque interdum eu id arcu. Fusce sed elit ut metus venenatis scelerisque ac id lorem. Nunc ullamcorper urna sed nibh ullamcorper tempus. Proin sit amet velit non nibh dictum vehicula in a metus. Morbi semper eros faucibus placerat luctus. Sed semper massa id sapien varius, vel vestibulum sem gravida. Aenean ac felis id risus porttitor cursus ut ut turpis. Fusce eget tellus lorem. Vestibulum vel nisi id ligula ullamcorper congue nec at tortor. Aliquam at magna nec quam vestibulum placerat non vitae est.
+
+Sed at venenatis neque. Phasellus id mollis lectus. Proin arcu enim, elementum eget sollicitudin a, ullamcorper ac nulla. Donec porta ligula sed ante fermentum convallis. Cras sit amet turpis mauris. Duis at ex nibh. Donec rutrum rhoncus augue, in hendrerit quam faucibus sit amet. Proin tempor tempus nulla at blandit. In quis neque vel libero aliquet tincidunt. Cras vitae purus at orci efficitur placerat. Proin ultricies mi eu justo porttitor viverra.
+
+Aenean consequat a enim eu mattis. Etiam placerat vitae dui quis mattis. Suspendisse vehicula nulla ut augue suscipit, at consequat est imperdiet. Vivamus posuere lectus eget sem ullamcorper, suscipit commodo metus sollicitudin. Donec mattis diam quis ex commodo consectetur. Mauris in tempor purus, id eleifend neque. Nulla tempus arcu a eros fermentum, finibus vulputate leo malesuada. Nam porta non purus a tincidunt. Morbi magna lectus, condimentum quis condimentum sit amet, congue id felis. Nulla eu elit id ex bibendum tristique vel id orci. Sed gravida aliquam magna a vestibulum. Ut sit amet velit in felis vulputate rhoncus in non ante. Nunc magna justo, pretium ut tempus ac, euismod non nisl. Nulla id turpis ac nisl sollicitudin auctor vel sit amet lectus. Nunc vel dignissim orci.
+
+Nunc nec nibh cursus, pretium diam ut, pulvinar augue. Duis diam est, condimentum eu sapien ultrices, ullamcorper rhoncus eros. In ullamcorper tortor libero, ac porttitor quam consectetur vel. Donec sit amet odio et dolor facilisis faucibus vulputate sed ante. Aenean dignissim auctor odio in tincidunt. Integer egestas massa enim, ac posuere nulla placerat id. Donec malesuada gravida dui, quis porttitor arcu mattis sed. Nam faucibus ex ut placerat bibendum. Duis aliquam lectus dui, ac placerat elit dignissim sit amet. Vestibulum a vulputate elit. Maecenas ac turpis tellus.
+
+In efficitur efficitur dapibus. Duis laoreet pulvinar viverra. Donec a consequat justo. Morbi eu enim sem. Integer arcu arcu, pulvinar vitae nibh a, vehicula ultrices massa. Mauris mollis mauris at mattis ultricies. Mauris sodales vestibulum lacus, vitae ultrices risus suscipit ut. Maecenas porta elementum enim efficitur vestibulum. Sed volutpat tortor dolor, eu dignissim felis imperdiet eget. Suspendisse nec risus sed lacus rhoncus laoreet eu quis lacus. Nulla fermentum sollicitudin porttitor. Curabitur porttitor in nisl eu venenatis. Donec fringilla pulvinar lacus. Phasellus quam dui, sollicitudin id pellentesque in, porttitor feugiat tortor. Etiam varius ultricies consectetur.</ul>
       </div>
     </section>
   </main>
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-left">
+      <img src="img/logo.png" alt="Simbolo Integrar Jr." class="footer-logo" />
+      <div class="footer-socials">
+        <a href="https://facebook.com/integrarjr" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com/integrarjr" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://linkedin.com/company/integrarjr" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="sobre.html">Sobre nós</a>
+      <a href="carreira.html">Carreiras</a>
+      <a href="contato.html">Contato</a>
+    </div>
+  </div>
+  <p class="footer-bottom">© Integrar Jr. 2025. Todos os direitos reservados.</p>
+</footer>
 </body>
 </html>

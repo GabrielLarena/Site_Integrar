@@ -336,12 +336,25 @@ button.cta {
 }
 
 .social-icon {
-  color: var(--primary);
-  background: white;
-  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  background-color: white;
   border-radius: 50%;
-  font-size: 1.2rem;
-  transition: background 0.2s;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.facebook {
+  background-image: url('img/facebook.png');
+}
+
+.instagram {
+  background-image: url('img/instagram.png');
+}
+
+.youtube {
+  background-image: url('img/youtube.png');
 }
 
 .social-icon:hover {
@@ -370,6 +383,37 @@ button.cta {
   margin-top: 2rem;
   font-size: 0.9rem;
   color: var(--gray);
+}
+
+.footer-socials a {
+  display: flex; /* garante centralização do conteúdo */
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  text-decoration: none; /* remove sublinhado */
+  color: var(--primary); /* cor padrão do ícone */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.footer-socials a i {
+  font-size: 18px; /* ajusta o tamanho do ícone */
+  line-height: 1;
+}
+
+/* Estados de hover */
+.footer-socials a:hover {
+  background: var(--secondary);
+  color: white; /* muda apenas a cor do ícone */
+}
+
+/* Evita cor roxa ou azul em visited/active */
+.footer-socials a:visited,
+.footer-socials a:active,
+.footer-socials a:focus {
+  color: var(--primary);
 }
 
 @media (min-width: 768px) {

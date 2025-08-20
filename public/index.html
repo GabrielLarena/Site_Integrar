@@ -7,16 +7,36 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script defer>
-    document.addEventListener("DOMContentLoaded", () => {
-      const burger = document.getElementById("burger");
-      const nav = document.getElementById("nav");
+  // Script do Menu  
+  document.addEventListener("DOMContentLoaded", () => {
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
 
-      burger.addEventListener("click", () => {
-        nav.classList.toggle("mobile-show");
-        nav.classList.toggle("mobile-hidden");
-      });
+    // Abir/fechar com o clique no burger
+    burger.addEventListener("click", (e) => {
+      e.stopPropagation(); // evita que o clique no botão seja considerado "fora"
+      nav.classList.toggle("mobile-show");
+      nav.classList.toggle("mobile-hidden");
     });
-  </script>
+
+    // Fechar ao clicar fora do menu
+    document.addEventListener("click", (e) => {
+      const isClickInside = nav.contains(e.target) || burger.contains(e.target);
+      if (!isClickInside && nav.classList.contains("mobile-show")) {
+        nav.classList.remove("mobile-show");
+        nav.classList.add("mobile-hidden");
+      }
+    });
+
+    // Fechar automaticamente se a tela mudar para desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) { // ajuste o breakpoint conforme seu layout
+        nav.classList.remove("mobile-show");
+        nav.classList.add("mobile-hidden");
+      }
+    });
+  });
+</script>
 </head>
 <body>
   <header class="header">
@@ -25,8 +45,8 @@
     <nav id="nav" class="nav mobile-hidden">
       <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#parceiros">Parceiros</a></li>
+        <li><a href="index.html#servicos">Serviços</a></li>
+        <li><a href="index.html#parceiros">Parceiros</a></li>
         <li><a href="carreira.html">Carreiras</a></li>
         <li><a href="contato.html">Contato</a></li>
       </ul>
@@ -119,24 +139,30 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-top">
-      <div class="footer-left">
-        <img src="img/logo.png" alt="Simbolo Integrar Jr." class="footer-logo" />
-        <div class="footer-socials">
-          <a href="https://facebook.com/integrarjr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f social-icon"></i></a>
-          <a href="https://instagram.com/integrarjr" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram social-icon"></i></a>
-          <a href="https://linkedin.com/company/integrarjr" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin social-icon"></i></a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <a href="sobre.html">Sobre nós</a>
-        <a href="carreira.html">Carreiras</a>
-        <a href="contato.html">Contato</a>
+   <!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-left">
+      <img src="img/logo.png" alt="Simbolo Integrar Jr." class="footer-logo" />
+      <div class="footer-socials">
+        <a href="https://facebook.com/integrarjr" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com/integrarjr" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://linkedin.com/company/integrarjr" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
       </div>
     </div>
-    <p class="footer-bottom">© Integrar Jr. 2025. Todos os direitos lorem ipsum.</p>
-  </footer>
+    <div class="footer-links">
+      <a href="sobre.html">Sobre nós</a>
+      <a href="carreira.html">Carreiras</a>
+      <a href="contato.html">Contato</a>
+    </div>
+  </div>
+  <p class="footer-bottom">© Integrar Jr. 2025. Todos os direitos reservados.</p>
+</footer>
 </body>
 </html>
