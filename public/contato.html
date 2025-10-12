@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  // Nome do sitena tab
+  <!-- Nome do sitena tab -->
   <title>Integrar Jr.</title>
-  // Alterar o styles.css para mudar o estilo
+  <!-- Alterar o styles.css para mudar o estilo -->
   <link rel="stylesheet" href="styles.css">
-  // icone ao lado do nome do site
+  <!-- icone ao lado do nome do site -->
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script defer>
@@ -60,34 +60,70 @@
   </header>  
 
   <main class="main-container contato-section">
-    <h1>Entre em Contato</h1>
-    <p>Preencha o formulário abaixo e retornaremos em breve.</p>
+  <h1>Entre em Contato</h1>
+  <p>Preencha o formulário abaixo e retornaremos em breve.</p>
 
-    <form class="contato-form">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required>
+  <!-- Formulário com envio via EmailJS -->
+  <form id="contact-form" class="contato-form">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="Nome" required>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="Email" required>
 
-      <label for="celular">Celular:</label>
-      <input type="tel" id="celular" name="celular" placeholder="(00) 00000-0000" required>
+    <label for="celular">Celular:</label>
+    <input type="tel" id="celular" name="Celular" placeholder="(00) 00000-0000" required>
 
-      <label for="servico">Serviço desejado:</label>
-      <select id="servico" name="servico" required>
-        <option value="">Selecione</option>
-        <option value="consultoria">Consultoria Empresarial</option>
-        <option value="marketing">Marketing Estratégico</option>
-        <option value="tecnologia">Soluções Tecnológicas</option>
-        <option value="outro">Outro</option>
-      </select>
+    <label for="servico">Serviço desejado:</label>
+    <select id="servico" name="Servico" required>
+      <option value="">Selecione</option>
+      <option value="Consultoria Empresarial">Consultoria Empresarial</option>
+      <option value="Marketing Estratégico">Marketing Estratégico</option>
+      <option value="Soluções Tecnológicas">Soluções Tecnológicas</option>
+      <option value="Outro">Outro</option>
+    </select>
 
-      <label for="mensagem">Descreva seu projeto:</label>
-      <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+    <label for="mensagem">Descreva seu projeto:</label>
+    <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
 
-      <button type="submit" class="cta">Enviar</button>
-    </form>
-  </main>
+    <button type="submit" class="cta">Enviar</button>
+  </form>
+
+  <!-- Mensagem de status -->
+  <p id="msg-status" style="margin-top: 1rem;"></p>
+</main>
+
+<!-- Script EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  // Inicializa o EmailJS
+  (function() {
+    emailjs.init("vSLsZhrQULwhaVwUW"); // Public Key
+  })();
+
+  // Captura o envio do formulário
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const status = document.getElementById("msg-status");
+    status.style.color = "white";
+    status.innerText = "Enviando mensagem...";
+
+    // Envia os dados do formulário
+    emailjs.sendForm("service_strr2g2", "template_ybft3py", this)
+      .then(() => {
+        status.style.color = "limegreen";
+        status.innerText = "Mensagem enviada com sucesso!";
+        this.reset();
+      })
+      .catch((error) => {
+        console.error("Erro ao enviar:", error);
+        status.style.color = "red";
+        status.innerText = "Erro ao enviar. Tente novamente mais tarde.";
+      });
+  });
+</script>
+
 
    <!-- Footer -->
 <footer class="footer">
