@@ -143,6 +143,34 @@
         <a href="carreira.html" class="cta">Ver oportunidades</a>
       </div>
     </section>
+
+    <!-- Seção Auto-scroll -->
+    <section class="scroll-section" id="galeria">
+  <div class="scroll-top">
+    <h1>Alguns de Nossos Projetos e Parceiros</h1>
+    <div class="scroll-controls">
+      <button id="scroll-prev" class="arrow-btn" aria-label="Anterior">‹</button>
+      <button id="scroll-next" class="arrow-btn" aria-label="Próximo">›</button>
+    </div>
+  </div>
+
+  <div class="scroll-viewport" id="scroll-viewport" aria-hidden="false">
+    <div class="scroll-track" id="scroll-track">
+      <!-- Imagens serão duplicadas automaticamente pelo JS. -->
+      <img src="img/image1.png" alt="Projeto 1">
+      <img src="img/image2.png" alt="Projeto 2">
+      <img src="img/image3.png" alt="Projeto 3">
+      <img src="img/image4.png" alt="Projeto 4">
+      <img src="img/image5.png" alt="Projeto 5">
+      <img src="img/image6.png" alt="Projeto 6">
+      <img src="img/image7.png" alt="Projeto 7">
+      <img src="img/image8.png" alt="Projeto 8">
+      <img src="img/image9.png" alt="Projeto 9">
+      <img src="img/image10.png" alt="Projeto 10">
+    </div>
+  </div>
+</section>
+
   </main>
 
    <!-- Footer -->
@@ -170,5 +198,107 @@
   </div>
   <p class="footer-bottom">© Integrar Jr. 2025. Todos os direitos reservados.</p>
 </footer>
+<!-- Script do auto-scroll -->
+<script>
+/* ===== Scroll contínuo left-to-right com reset + setas + pause ===== */
+(function () {
+  const viewport = document.getElementById('scroll-viewport');
+  const track = document.getElementById('scroll-track');
+  const prevBtn = document.getElementById('scroll-prev');
+  const nextBtn = document.getElementById('scroll-next');
+
+  if (!viewport || !track) return; // segurança: sai se os elementos não existirem
+
+  // velocidade em pixels por frame (ajuste conforme quiser)
+  const SPEED = 0.6;
+  let animId = null;
+  let paused = false;
+
+  // duplicar conteúdo para loop suave
+  const children = Array.from(track.children);
+  children.forEach(node => {
+    const clone = node.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  // calcula largura do conjunto original (metade do scrollWidth após duplicar)
+  function getOriginalWidth() {
+    return track.scrollWidth / 2;
+  }
+
+  let originalWidth = getOriginalWidth();
+
+  // posição inicial (começa "escondido" à esquerda)
+  let x = -originalWidth;
+  track.style.transform = `translateX(${Math.round(x)}px)`;
+
+  // reajusta quando a janela muda de tamanho
+  window.addEventListener('resize', () => {
+    originalWidth = getOriginalWidth();
+    if (x > 0 || x <= -originalWidth) x = -originalWidth;
+    track.style.transform = `translateX(${Math.round(x)}px)`;
+  });
+
+  // loop da animação
+  function step() {
+    if (!paused) {
+      x += SPEED;
+      if (x >= 0) {
+        // chegou ao fim -> reset contínuo para -originalWidth
+        x = -originalWidth + (x - 0);
+      }
+      track.style.transform = `translateX(${Math.round(x)}px)`;
+    }
+    animId = requestAnimationFrame(step);
+  }
+
+  animId = requestAnimationFrame(step);
+
+  // pausar em hover
+  viewport.addEventListener('mouseenter', () => { paused = true; });
+  viewport.addEventListener('mouseleave', () => { paused = false; });
+
+  // função para mover por "uma imagem"
+  function scrollByImage(direction = 1) {
+    const img = track.querySelector('img');
+    if (!img) return;
+    const gap = parseFloat(getComputedStyle(track).gap) || 18;
+    const imgWidth = img.getBoundingClientRect().width;
+    const move = (imgWidth + gap) * direction;
+    x += move;
+    if (x >= 0) x = -originalWidth + (x - 0);
+    track.style.transform = `translateX(${Math.round(x)}px)`;
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      paused = true;
+      scrollByImage(1);
+      setTimeout(() => { paused = false; }, 700);
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      paused = true;
+      scrollByImage(-1);
+      setTimeout(() => { paused = false; }, 700);
+    });
+  }
+
+  // setas do teclado (opcional)
+  window.addEventListener('keydown', (ev) => {
+    if (ev.key === 'ArrowRight') {
+      ev.preventDefault();
+      nextBtn && nextBtn.click();
+    } else if (ev.key === 'ArrowLeft') {
+      ev.preventDefault();
+      prevBtn && prevBtn.click();
+    }
+  });
+})();
+</script>
 </body>
 </html>

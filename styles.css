@@ -151,6 +151,90 @@ ul {
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
+
+/* Auto scroll */
+.scroll-section {
+  width: 100%;
+  padding: 36px 0;
+  background: var(--light);
+}
+
+.scroll-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto 18px;
+  padding: 0 16px;
+}
+
+.scroll-top h2 {
+  font-size: 1.6rem;
+  margin: 0;
+  color: #222;
+}
+
+.scroll-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.arrow-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.arrow-btn:active { transform: translateY(1px); }
+.arrow-btn:focus { outline: 2px solid var(--secondary); }
+
+/* Viewport com overflow hidden */
+.scroll-viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Track flex e duplicação visual */
+.scroll-track {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  will-change: transform;
+  /* transform será atualizado por JS */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 16px;
+}
+
+/* imagens com tamanho similar às outras seções */
+.scroll-track img {
+  width: 300px;           /* largura base */
+  height: 200px;          /* altura base */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  flex-shrink: 0;
+}
+
+/* adaptações responsivas para combinar com outras seções */
+@media (max-width: 1024px) {
+  .scroll-track img { width: 250px; height: 170px; }
+}
+@media (max-width: 768px) {
+  .scroll-track img { width: 180px; height: 120px; }
+  .scroll-top h2 { font-size: 1.25rem; }
+  .arrow-btn { width: 36px; height: 36px; font-size: 1rem; }
+}
+
 /* Botões e CTA */
 .cta,
 button.cta {
