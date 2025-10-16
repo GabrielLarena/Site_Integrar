@@ -153,10 +153,43 @@ ul {
 
 
 /* Auto scroll */
-.scroll-section {
+.carousel-section {
+  text-align: center;
+  margin: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary-dark);
+}
+
+.carousel-viewport {
+  position: relative;
   width: 100%;
-  padding: 36px 0;
-  background: var(--light);
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 18px;
+  will-change: transform;
+  transition: transform 0.3s ease;
+}
+
+.carousel-track img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.carousel-track img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
 .scroll-top {
@@ -169,18 +202,13 @@ ul {
   padding: 0 16px;
 }
 
-.scroll-top h2 {
-  font-size: 1.6rem;
-  margin: 0;
-  color: #222;
-}
-
 .scroll-controls {
   display: flex;
   gap: 8px;
 }
 
-.arrow-btn {
+/* Botões parceiros */
+.carousel-btn {
   background: var(--primary);
   color: white;
   border: none;
@@ -194,8 +222,11 @@ ul {
   justify-content: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
-.arrow-btn:active { transform: translateY(1px); }
-.arrow-btn:focus { outline: 2px solid var(--secondary); }
+.carousel-btn:hover {
+  background-color: var(--primary, #0077b6);
+}
+.carousel-btn:active { transform: translateY(1px); }
+.carousel-btn:focus { outline: 2px solid var(--secondary); }
 
 /* Viewport com overflow hidden */
 .scroll-viewport {

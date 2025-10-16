@@ -6,7 +6,7 @@
   <!-- Nome do sitena tab -->
   <title>Integrar Jr.</title>
   <!-- Alterar o styles.css para mudar o estilo -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles.css">
   <!-- icone ao lado do nome do site -->
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -145,18 +145,16 @@
     </section>
 
     <!-- Seção Auto-scroll -->
-    <section class="scroll-section" id="galeria">
+  <section class="carousel-section">
   <div class="scroll-top">
-    <h1>Alguns de Nossos Projetos e Parceiros</h1>
-    <div class="scroll-controls">
-      <button id="scroll-prev" class="arrow-btn" aria-label="Anterior">‹</button>
-      <button id="scroll-next" class="arrow-btn" aria-label="Próximo">›</button>
-    </div>
+    <h2>Alguns de Nossos Projetos e Parceiros</h2>
+  <div class="scroll-controls">
+      <button id="scroll-prev" class="carousel-btn" aria-label="Anterior">‹</button>
+      <button id="scroll-next" class="carousel-btn" aria-label="Próximo">›</button>
   </div>
-
-  <div class="scroll-viewport" id="scroll-viewport" aria-hidden="false">
-    <div class="scroll-track" id="scroll-track">
-      <!-- Imagens serão duplicadas automaticamente pelo JS. -->
+  </div>
+  <div class="carousel-viewport" id="scroll-viewport">
+    <div class="carousel-track" id="scroll-track">
       <img src="img/image1.png" alt="Projeto 1">
       <img src="img/image2.png" alt="Projeto 2">
       <img src="img/image3.png" alt="Projeto 3">
@@ -200,104 +198,51 @@
 </footer>
 <!-- Script do auto-scroll -->
 <script>
-/* ===== Scroll contínuo left-to-right com reset + setas + pause ===== */
 (function () {
   const viewport = document.getElementById('scroll-viewport');
   const track = document.getElementById('scroll-track');
   const prevBtn = document.getElementById('scroll-prev');
   const nextBtn = document.getElementById('scroll-next');
 
-  if (!viewport || !track) return; // segurança: sai se os elementos não existirem
+  if (!viewport || !track) return;
 
-  // velocidade em pixels por frame (ajuste conforme quiser)
-  const SPEED = 0.6;
-  let animId = null;
+  const SPEED = 0.5;
   let paused = false;
+  let x = 0;
 
-  // duplicar conteúdo para loop suave
+  // duplicar imagens para loop contínuo
   const children = Array.from(track.children);
-  children.forEach(node => {
-    const clone = node.cloneNode(true);
-    track.appendChild(clone);
-  });
+  children.forEach(node => track.appendChild(node.cloneNode(true)));
 
-  // calcula largura do conjunto original (metade do scrollWidth após duplicar)
-  function getOriginalWidth() {
-    return track.scrollWidth / 2;
-  }
+  const halfWidth = track.scrollWidth / 2;
 
-  let originalWidth = getOriginalWidth();
-
-  // posição inicial (começa "escondido" à esquerda)
-  let x = -originalWidth;
-  track.style.transform = `translateX(${Math.round(x)}px)`;
-
-  // reajusta quando a janela muda de tamanho
-  window.addEventListener('resize', () => {
-    originalWidth = getOriginalWidth();
-    if (x > 0 || x <= -originalWidth) x = -originalWidth;
-    track.style.transform = `translateX(${Math.round(x)}px)`;
-  });
-
-  // loop da animação
   function step() {
     if (!paused) {
-      x += SPEED;
-      if (x >= 0) {
-        // chegou ao fim -> reset contínuo para -originalWidth
-        x = -originalWidth + (x - 0);
-      }
-      track.style.transform = `translateX(${Math.round(x)}px)`;
+      x -= SPEED;
+      // reset bidirecional
+      if (x <= -halfWidth) x = 0;
+      else if (x > 0) x = -halfWidth;
+      track.style.transform = `translateX(${x}px)`;
     }
-    animId = requestAnimationFrame(step);
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+
+  // pausa quando mouse entra
+  viewport.addEventListener('mouseenter', () => paused = true);
+  viewport.addEventListener('mouseleave', () => paused = false);
+
+  // mover manualmente com botões
+  function move(direction) {
+    paused = true;
+    x += direction * 320; // 300px + gap
+    if (Math.abs(x) >= track.scrollWidth / 2) x = 0;
+    track.style.transform = `translateX(${x}px)`;
+    setTimeout(() => paused = false, 800);
   }
 
-  animId = requestAnimationFrame(step);
-
-  // pausar em hover
-  viewport.addEventListener('mouseenter', () => { paused = true; });
-  viewport.addEventListener('mouseleave', () => { paused = false; });
-
-  // função para mover por "uma imagem"
-  function scrollByImage(direction = 1) {
-    const img = track.querySelector('img');
-    if (!img) return;
-    const gap = parseFloat(getComputedStyle(track).gap) || 18;
-    const imgWidth = img.getBoundingClientRect().width;
-    const move = (imgWidth + gap) * direction;
-    x += move;
-    if (x >= 0) x = -originalWidth + (x - 0);
-    track.style.transform = `translateX(${Math.round(x)}px)`;
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      paused = true;
-      scrollByImage(1);
-      setTimeout(() => { paused = false; }, 700);
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      paused = true;
-      scrollByImage(-1);
-      setTimeout(() => { paused = false; }, 700);
-    });
-  }
-
-  // setas do teclado (opcional)
-  window.addEventListener('keydown', (ev) => {
-    if (ev.key === 'ArrowRight') {
-      ev.preventDefault();
-      nextBtn && nextBtn.click();
-    } else if (ev.key === 'ArrowLeft') {
-      ev.preventDefault();
-      prevBtn && prevBtn.click();
-    }
-  });
+  prevBtn.addEventListener('click', () => move(1));
+  nextBtn.addEventListener('click', () => move(-1));
 })();
 </script>
 </body>
